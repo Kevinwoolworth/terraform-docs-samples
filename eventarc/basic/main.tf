@@ -43,7 +43,7 @@ resource "google_project_service" "eventarc" {
 resource "google_cloud_run_service" "default" {
   provider = google-beta
   name     = "cloudrun-hello-tf"
-  location = "us-east1"
+  location = "australia-southeast1"
 
   template {
     spec {
