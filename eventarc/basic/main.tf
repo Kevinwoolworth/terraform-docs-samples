@@ -134,23 +134,23 @@ resource "google_eventarc_trigger" "trigger_auditlog_tf" {
 
 
 # ==========update subscription message retention duration============================================================
-#
+# ==============DON'T WORK ===============================================
 # Retrieve existing subscription details
-data "google_pubsub_subscription" "trigger_auditlog_existing_subscription" {
-  name = google_eventarc_trigger.trigger_auditlog_tf.transport[0].pubsub[0].subscription
-  depends_on = [google_eventarc_trigger.trigger_auditlog_tf]
-}
+#data "google_pubsub_subscription" "trigger_auditlog_existing_subscription" {
+#  name = google_eventarc_trigger.trigger_auditlog_tf.transport[0].pubsub[0].subscription
+#  depends_on = [google_eventarc_trigger.trigger_auditlog_tf]
+#}
 
-data "google_pubsub_topic" "trigger_auditlog_existing_topic" {
-  name = google_eventarc_trigger.trigger_auditlog_tf.transport[0].pubsub[0].topic
-  depends_on = [google_eventarc_trigger.trigger_auditlog_tf]
-}
+#data "google_pubsub_topic" "trigger_auditlog_existing_topic" {
+#  name = google_eventarc_trigger.trigger_auditlog_tf.transport[0].pubsub[0].topic
+#  depends_on = [google_eventarc_trigger.trigger_auditlog_tf]
+#}
 
 # Update the subscription with the desired message retention duration
-resource "google_pubsub_subscription" "updated_subscription" {
-  name                  = "existing-subscription"
-  topic                 = data.google_pubsub_topic.trigger_auditlog_existing_topic.name
-  message_retention_duration = "604800s" # Set retention duration to 7 days
-  depends_on = [data.google_pubsub_subscription.trigger_auditlog_existing_subscription]
-}
+#resource "google_pubsub_subscription" "updated_subscription" {
+#  name                  = google_eventarc_trigger.trigger_auditlog_tf.transport[0].pubsub[0].subscription
+#  topic                 = google_eventarc_trigger.trigger_auditlog_tf.transport[0].pubsub[0].topic
+#  message_retention_duration = "604800s" # Set retention duration to 7 days
+#  depends_on = [google_eventarc_trigger.trigger_auditlog_tf]
+#}
 # =========== end===========================================================
