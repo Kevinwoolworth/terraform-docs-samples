@@ -2,7 +2,7 @@
 
 assume pubsub subscriptions is `projects/gcp-wow-rwds-api-poc-dev/subscriptions/eventarc-australia-southeast1-trigger-auditlog-tf-sub-444`
 ```
-gcloud pubsub subscriptions describe  projects/gcp-wow-rwds-api-poc-dev/subscriptions/eventarc-australia-southeast1-trigger-auditlog-tf-sub-444
+gcloud pubsub subscriptions describe projects/gcp-wow-rwds-api-poc-dev/subscriptions/eventarc-australia-southeast1-trigger-auditlog-tf-sub-444
 gcloud pubsub subscriptions update projects/gcp-wow-rwds-api-poc-dev/subscriptions/eventarc-australia-southeast1-trigger-auditlog-tf-sub-444  --message-retention-duration=604800
 ```
 
