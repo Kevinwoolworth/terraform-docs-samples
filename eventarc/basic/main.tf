@@ -131,3 +131,26 @@ resource "google_eventarc_trigger" "trigger_auditlog_tf" {
 
 # [END eventarc_terraform_auditlog_storage]
 # [END eventarc_basic_parent_tag]
+
+
+# ==========update subscription message retention duration============================================================
+#
+# Retrieve existing subscription details
+data "google_pubsub_subscription" "trigger_auditlog_existing_subscription" {
+  name = google_eventarc_trigger.trigger_auditlog_tf.transport[0].pubsub[0].subscription
+  depends_on = [google_eventarc_trigger.trigger_auditlog_tf]
+}
+
+data "google_pubsub_topic" "trigger_auditlog_existing_topic" {
+  name = google_eventarc_trigger.trigger_auditlog_tf.transport[0].pubsub[0].topic
+  depends_on = [google_eventarc_trigger.trigger_auditlog_tf]
+}
+
+# Update the subscription with the desired message retention duration
+resource "google_pubsub_subscription" "updated_subscription" {
+  name                  = "existing-subscription"
+  topic                 = data.google_pubsub_topic.trigger_auditlog_existing_topic.name
+  message_retention_duration = "604800s" # Set retention duration to 7 days
+  depends_on = [data.google_pubsub_subscription.trigger_auditlog_existing_subscription]
+}
+# =========== end===========================================================
