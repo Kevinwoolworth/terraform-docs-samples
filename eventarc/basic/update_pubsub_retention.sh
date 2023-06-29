@@ -26,4 +26,6 @@ for subscription in $subscriptions; do
   else
     echo "Retention duration already set to 7 days for $subscription"
   fi
+
+  echo "======================================================"
 done
