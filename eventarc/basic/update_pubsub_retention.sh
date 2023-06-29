@@ -1,5 +1,23 @@
 #!/bin/bash
 
+# To create a Codefresh pipeline with a cron trigger, you need to define the pipeline configuration in a codefresh.yml file within your repository.
+# ============================================
+#
+#version: '1.0'
+#
+#pipelines:
+#  cron_job_pipeline:
+#    schedule:
+#      cron: '0 0 * * *'  # Schedule the pipeline to run daily at midnight (UTC)
+#    steps:
+#      - name: step1
+#        image: alpine:latest
+#        commands:
+#          - sh path/to/your/update_pubsub_retention.sh
+# ============================================
+
+
+
 set -eou pipefail
 
 project_id="gcp-wow-rwds-api-poc-dev"
