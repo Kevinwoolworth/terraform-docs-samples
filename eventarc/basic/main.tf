@@ -127,14 +127,27 @@ resource "google_eventarc_trigger" "trigger_auditlog_tf" {
   service_account = "${data.google_project.project.number}-compute@developer.gserviceaccount.com"
 
   depends_on = [google_project_service.eventarc]
+#  depends_on = [google_project_service.eventarc, google_pubsub_subscription.existing_subscription, google_pubsub_topic.example_topic]
 }
+#=============DOESN'T WORK ==============================
+#resource "google_pubsub_topic" "example_topic" {
+#  name    = "example-topic"
+#  project = data.google_project.project.id
+#}
+#
+#resource "google_pubsub_subscription" "existing_subscription" {
+#  name                      = "existing-subscription"
+#  project                   = data.google_project.project.id
+#  topic                     = google_pubsub_topic.example_topic.id
+#  message_retention_duration = "604800s"  # Set retention duration to 7 days
+#}
 
 # [END eventarc_terraform_auditlog_storage]
 # [END eventarc_basic_parent_tag]
 
 
 # ==========update subscription message retention duration============================================================
-# ==============DON'T WORK ===============================================
+# ==============DOESN'T WORK ===============================================
 # Retrieve existing subscription details
 #data "google_pubsub_subscription" "trigger_auditlog_existing_subscription" {
 #  name = google_eventarc_trigger.trigger_auditlog_tf.transport[0].pubsub[0].subscription
