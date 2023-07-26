@@ -63,7 +63,7 @@ resource "google_monitoring_alert_policy" "workflows" {
 resource "google_logging_metric" "logging_metric" {
   project = "gcp-wow-rwds-data-poc-dev"
   name    = "my-progress/metric"
-  filter  = "resource.type=\"gce_firewall_rule\" AND jsonPayload.rule_details.reference=\"firewall:postgres-proxy\""
+  filter  = "resource.type=\"gce_firewall_rule\" AND proto_payload.resource_name=\"projects/gcp-wow-rwds-data-poc-dev/global/firewalls/postgres-proxy\""
   metric_descriptor {
     metric_kind = "DELTA"
     value_type  = "INT64"
